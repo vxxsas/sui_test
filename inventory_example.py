@@ -256,5 +256,16 @@ def inventory_input(hashMap,_files=none,_data=none)
     global pos
 
     hashMap.put("toast",hashMap.get("listener"))
-    
+
+    if hashMap.get("listener") == "barcode":
+
+        for line in document["goods"]:
+            if line["barcode"] == hashMap.get("barcode"):
+                pos = document["goods"].index(line)
+                break
+
+            if pos == -1:
+                hashMap.put("toast", "Штрихкод не найден")
+                return hashMap
+
     

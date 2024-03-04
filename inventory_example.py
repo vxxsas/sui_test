@@ -249,4 +249,12 @@ def inventory_open(hashMap,_files=none,_data=none)
     hashMap.put("table",json,dumps(jdocs,ensure_ascii=false))
 
     return hashMap
+
+pos = -1
+def inventory_input(hashMap,_files=none,_data=none)
+    global document
+    global pos
+
+    hashMap.put("toast",hashMap.get("listener"))
+    
     

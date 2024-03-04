@@ -268,4 +268,44 @@ def inventory_input(hashMap,_files=none,_data=none)
                 hashMap.put("toast", "Штрихкод не найден")
                 return hashMap
 
+        layout = {
+                    "Value":        "",
+                    "Variable":     "",
+                    "type":         "LinearLayout",
+                    "weight":       "0",
+                    "height":       "match_parent",
+                    "width":        "match_parent",
+                    "orientation":  "vertical",
+                    "Elements": [
+                        {
+                            "type":     "TextView",
+                            "height":   "wrap_content",
+                            "width":    "match_parent",
+                            "weight":   "0",
+                            "Value":    "Количество",
+                            "Variable": ""
+                        },
+                        {
+                            "type":     "EditTextText",
+                            "height":   "wrap_content",
+                            "width":    "match_parent",
+                            "weight":   "0",
+                            "Value":    "",
+                            "Variable": "qty"
+                        }
+                    ],
+                    "BackgroundColor": "",
+                    "StrokeWidth": "",
+                    "Padding": ""
+                }
+        hashMap.put("ShowDialogLayout",json.dumps(layout,ensure_ascii=False))
+        hashMap.put("ShowDialog","")
+        hashMap.put("ShowDialogStyle",json.dumps({"title":"Ввод количества","yes":"Сохранить","no":"Отмена"},ensure_ascii=False))
     
+    elif hashMap.get("event") == "onResultPositive":
+        hashMap.put("toast",str(pos))
+        if pos>-1:
+            document["goods"][pos]["qty"] = hashMap.get("qty")
+            db['inventory'].insert(document,upsert=True)
+    
+    return hashMap

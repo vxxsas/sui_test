@@ -98,9 +98,9 @@ jdocs = { "customcards":         {
 
 db = SimpleBase("test_1c",path=suClass.get_simplebase_dir(),timeout=200)
 
-def inventory_list_open(hashMap,_files=none,_data=none)
+def inventory_list_open(hashMap,_files=None,_data=None):
     
-    jdocs.["customcards"]["cardsdata"]=[]
+    jdocs["customcards"]["cardsdata"]=[]
     documents = db['inventory'].all()
 
     for doc in documents:
@@ -110,15 +110,15 @@ def inventory_list_open(hashMap,_files=none,_data=none)
             "string1":doc.get("name")
         }
 
-        jdocs.["customcards"]["cardsdata"].append(card)
+        jdocs["customcards"]["cardsdata"].append(card)
 
-    hashMap.put("cards",json,dumps(jdocs,ensure_ascii=false))
+    hashMap.put("cards",json.dumps(jdocs,ensure_ascii=False))
 
     return hashMap
 
 document = None
 
-def inventory_list_click(hashMap,_files=none,_data=none)
+def inventory_list_click(hashMap,_files=None,_data=None):
     
     global document
 
@@ -128,7 +128,7 @@ def inventory_list_click(hashMap,_files=none,_data=none)
 
     return hashMap
 
-def inventory_open(hashMap,_files=none,_data=none)
+def inventory_open(hashMap,_files=None,_data=None):
     
     j = { "customtable":         {
             "options":{
@@ -232,10 +232,10 @@ def inventory_open(hashMap,_files=none,_data=none)
         }
     }
 
-    j.["customtable"]["tabledata"]=[]
+    j["customtable"]["tabledata"]=[]
     documents = db['inventory'].all()
 
-    for line in document["goods"]:
+    for doc in document["goods"]:
         
         l = {
             "sku":doc.get("nom"),
@@ -244,14 +244,14 @@ def inventory_open(hashMap,_files=none,_data=none)
             "qty_fact":doc.get("qty")
         }
 
-        j.["customtable"]["tabledata"].append(l)
+        j["customtable"]["tabledata"].append(l)
 
-    hashMap.put("table",json,dumps(jdocs,ensure_ascii=false))
+    hashMap.put("table",json.dumps(jdocs,ensure_ascii=False))
 
     return hashMap
 
 pos = -1
-def inventory_input(hashMap,_files=none,_data=none)
+def inventory_input(hashMap,_files=None,_data=None):
     global document
     global pos
 

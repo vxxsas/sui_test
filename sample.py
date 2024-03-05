@@ -1,1 +1,1 @@
-print("Hello world")
+print(6+81)

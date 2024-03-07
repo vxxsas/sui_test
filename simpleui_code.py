@@ -98,6 +98,7 @@ jdocs = { "customcards":         {
 
 db          = SimpleBase("simbpeui_db",path=suClass.get_simplebase_dir(),timeout=200)
 document    = None
+pos         = -1
 
 def priemka_tovarov_list_click(hashMap,_files=None,_data=None):
     
@@ -128,9 +129,6 @@ def inventory_list_open(hashMap,_files=None,_data=None):
     hashMap.put("cards",json.dumps(jdocs,ensure_ascii=False))
 
     return hashMap
-
-
-
 
 
 def inventory_open(hashMap,_files=None,_data=None):
@@ -255,7 +253,7 @@ def inventory_open(hashMap,_files=None,_data=None):
 
     return hashMap
 
-pos = -1
+
 def inventory_input(hashMap,_files=None,_data=None):
     global document
     global pos
